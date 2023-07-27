@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Hello World :)</h1>
+
+  <div id="app">
+    <!-- you can use shortcur for v-bind as : -->
+    <a :href="url">All in one for learning Web Development</a>
+    <div v-if="showBooks">
+        <ul>
+          <li v-for="Book in filteredBooks" :class="{fav: Book.myFav}" @click = "ToggleFav(Book)">
+            <h3>{{Book.title}}</h3>
+            <p>{{Book.author}} - {{Book.age}}</p>
+            <img :src="Book.img" :alt="Book.title">
+          </li>
+        </ul>
+      <!-- v-on is called directive and @ is a shortcut for directive -->
+      <button v-on:click="age++">Increase Age</button>
+      <button v-on:click="DecreaseAge">Decrease Age</button>
+      <div @click="ChangeTitle('Naruto')">Change Title</div>
+    </div>
+
+    <button @click="ToggleShowBooks">
+      <span v-if = "!showBooks">Show Books</span>
+      <span v-if="showBooks">Hide Books</span>
+    </button>
+
+    <!-- Different v-show and v-if is v-if take the dom element and
+    v-show just change the css style into display from block to none-->
+
+    <p v-show="showBooks">Currently Showing Books</p>
+    <p v-show="!showBooks">Currently Hiding Books</p>
+    <br><br><hr>
+
+    <!-- for mouse events -->
+    <div class="box" @mouseover="HandleEvent($event , 5)">MouseOver (enter)</div>
+    <div class="box" @mouseleave="HandleEvent">MouseLeave</div>
+    <div class="box" @dblclick="HandleEvent">Double Click</div>
+    <div class="box" @mousemove="HandleMouseMove"> position - {{x}} - {{y}}</div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
